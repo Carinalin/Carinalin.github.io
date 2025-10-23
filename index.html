@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>林晓华 - 数据科学专家</title>
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Resource hints for performance -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://text.pollinations.ai">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        // Vibrant and cute color palette
+                        primary: '#ff6b9d',      // Pink
+                        secondary: '#4ecdc4',    // Coral green
+                        accent: '#ffe66d',       // Yellow
+                        success: '#95e1d3',      // Mint green
+                        warning: '#f38ba8',      // Light pink
+                        error: '#e74c3c',        // Coral red
+                        ocean: '#0077be',        // Ocean blue
+                        purple: '#a8e6cf',       // Light green
+                        orange: '#ff8b94',       // Coral orange
+                        lavender: '#dda0dd',     // Lavender
+                        peach: '#ffdab9',        // Peach
+
+                        // Background colors - more vibrant
+                        'day-bg': '#fff5f5',     // Light pink background
+                        'day-surface': '#ffffff',
+                        'day-surface-variant': '#ffe0e6',
+                        'day-border': '#ffb3c1',
+
+                        // Dark mode colors - new palette [#dbf2ef, #9fccc6, #5d8883, #334f48, #172a21]
+                        'dark-bg': '#172a21',        // Deep forest green
+                        'dark-surface': '#334f48',   // Dark green
+                        'dark-surface-variant': '#5d8883', // Medium green
+                        'dark-border': '#9fccc6',    // Light green
+
+                        // Gradient colors - more vibrant
+                        'gradient-start': '#ff6b9d',
+                        'gradient-middle': '#4ecdc4',
+                        'gradient-end': '#ffe66d',
+
+                        // Text colors that work with backgrounds
+                        'text-primary': '#2d3748',
+                        'text-secondary': '#4a5568',
+                        'text-light': '#f7fafc',
+
+                        // Dark mode text colors for better contrast
+                        'dark-text-primary': '#dbf2ef',  // Lightest green
+                        'dark-text-secondary': '#9fccc6', // Light green
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'bounce-soft': 'bounceSoft 2s infinite',
+                        'pulse-soft': 'pulseSoft 2s infinite'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --gradient-start: #ff6b9d;
+            --gradient-middle: #4ecdc4;
+            --gradient-end: #ffe66d;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounceSoft {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes pulseSoft {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-middle), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-middle), var(--gradient-end));
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .btn-hover {
+            transition: all 0.2s ease;
+        }
+
+        .btn-hover:hover {
+            transform: scale(1.05);
+        }
+
+        .chat-window {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .dark .chat-window {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .section-fade {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+
+        /* Decorative elements */
+        .floating-element {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .pattern-bg {
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+
+        .dark .pattern-bg {
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+        }
+
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .sr-only.focus:not(.focus) {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .sr-only.focus:focus {
+            position: static;
+            width: auto;
+            height: auto;
+            padding: 0.5rem 1rem;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+            border: 2px solid;
+        }
+
+        /* Focus indicators */
+        button:focus-visible,
+        input:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .chat-window {
+                border-width: 2px;
+            }
+
+            .card-hover {
+                border-width: 2px;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .floating-element {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-day-bg dark:bg-dark-bg text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Language Toggle -->
+    <div class="fixed top-6 left-6 z-50">
+        <a href="index-en.html" class="bg-day-surface dark:bg-dark-surface px-4 py-2 rounded-full shadow-lg btn-hover text-sm font-medium border border-day-border dark:border-dark-border">
+            <i class="fas fa-language mr-2"></i>English
+        </a>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button id="themeToggle" class="fixed top-6 right-6 z-50 p-3 rounded-full bg-day-surface dark:bg-dark-surface shadow-lg btn-hover border border-day-border dark:border-dark-border"
+            aria-label="切换深色模式" aria-pressed="false">
+        <i class="fas fa-sun text-yellow-500 dark:hidden" aria-hidden="true"></i>
+        <i class="fas fa-moon text-blue-400 hidden dark:block" aria-hidden="true"></i>
+    </button>
+
+    <!-- Header -->
+    <header class="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-day-bg via-day-surface-variant to-day-bg dark:from-dark-bg dark:via-dark-surface dark:to-dark-bg pattern-bg">
+        <!-- Floating decorative elements -->
+        <div class="floating-element top-20 left-10 w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full opacity-20"></div>
+        <div class="floating-element top-40 right-20 w-12 h-12 bg-accent rounded-lg opacity-30 rotate-45"></div>
+        <div class="floating-element bottom-40 left-20 w-20 h-20 bg-secondary rounded-full opacity-25"></div>
+        <div class="floating-element bottom-20 right-40 w-14 h-14 bg-primary rounded-lg opacity-20 rotate-12"></div>
+
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-primary to-secondary rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-secondary to-accent rounded-full filter blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="animate-fade-in">
+                <!-- Profile Avatar -->
+                <div class="mb-8">
+                    <div class="w-32 h-32 mx-auto bg-gradient-to-br from-primary via-secondary to-accent rounded-full p-1 shadow-2xl">
+                        <div class="w-full h-full bg-day-surface dark:bg-dark-surface rounded-full flex items-center justify-center overflow-hidden">
+                            <!-- Profile photo placeholder - replace with actual photo -->
+                            <img src="photo.jpg" alt="个人照片" class="w-full h-full object-cover rounded-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-full h-full bg-day-surface dark:bg-dark-surface rounded-full flex items-center justify-center" style="display: none;">
+                                <i class="fas fa-user-graduate text-4xl text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h1 class="text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent mb-4">林晓华</h1>
+                <p class="text-xl md:text-2xl text-text-primary dark:text-text-light mb-8 font-medium">数据科学硕士 | AI应用爱好者</p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 text-gray-600 dark:text-gray-400">
+                    <div class="flex items-center space-x-2 bg-day-surface dark:bg-dark-surface px-4 py-2 rounded-full shadow-md">
+                        <i class="fas fa-phone text-primary"></i>
+                        <span>+86-13750031293</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-day-surface dark:bg-dark-surface px-4 py-2 rounded-full shadow-md">
+                        <i class="fas fa-envelope text-primary"></i>
+                        <span>carinalin1006@gmail.com</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-day-surface dark:bg-dark-surface px-4 py-2 rounded-full shadow-md">
+                        <i class="fas fa-map-marker-alt text-primary"></i>
+                        <span>广东深圳</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-soft">
+            <i class="fas fa-chevron-down text-2xl text-gray-400"></i>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="container mx-auto px-6 py-16 space-y-20">
+
+        <!-- Education Section -->
+        <section class="section-fade stagger-1">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary to-secondary rounded-full mb-4">
+                    <i class="fas fa-graduation-cap text-3xl text-white"></i>
+                </div>
+                <h2 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">教育经历</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg card-hover border border-day-border dark:border-dark-border">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-green-400 rounded-full flex items-center justify-center">
+                                <i class="fas fa-university text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary">佐治亚理工学院</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Georgia Institute of Technology</p>
+                            </div>
+                        </div>
+                        <span class="text-sm text-gray-500 dark:text-white bg-day-surface-variant dark:bg-dark-surface-variant px-3 py-1 rounded-full">2022.01-2024.08</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 text-lg">数据科学专业硕士学位 (大数据分析方向)</p>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-red-200 rounded-full flex items-center justify-center">
+                            <i class="fas fa-star text-white text-lg"></i>
+                        </div>
+                        <p class="text-accent font-bold text-xl">绩点: 4.0/4.0</p>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-day-surface-variant dark:bg-dark-surface-variant p-3 rounded-lg">
+                            <i class="fas fa-trophy text-yellow-500 text-lg"></i>
+                            <span class="font-medium">所有课程均获得A（最高等级）</span>
+                        </div>
+                        <div class="flex items-center space-x-3 bg-day-surface-variant dark:bg-dark-surface-variant p-3 rounded-lg">
+                            <i class="fas fa-book text-blue-500 text-lg"></i>
+                            <span class="font-medium">分析建模、机器学习、深度学习、NLP、商业分析</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg card-hover border border-day-border dark:border-dark-border">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-400 rounded-full flex items-center justify-center">
+                                <i class="fas fa-university text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary">中山大学</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Sun Yat-sen University</p>
+                            </div>
+                        </div>
+                        <span class="text-sm text-gray-500 dark:text-white bg-day-surface-variant dark:bg-dark-surface-variant px-3 py-1 rounded-full">2013.08-2017.06</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4 text-lg">酒店管理专业学士学位</p>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-red-200 to-yellow-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-medal text-white text-lg"></i>
+                        </div>
+                        <p class="text-accent font-bold text-xl">绩点: 3.8/4.0</p>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-day-surface-variant dark:bg-dark-surface-variant p-3 rounded-lg">
+                            <i class="fas fa-award text-yellow-500 text-lg"></i>
+                            <span class="font-medium">国家励志奖学金、英才奖学金、三等奖学金</span>
+                        </div>
+                        <div class="flex items-center space-x-3 bg-day-surface-variant dark:bg-dark-surface-variant p-3 rounded-lg">
+                            <i class="fas fa-graduation-cap text-blue-500 text-lg"></i>
+                            <span class="font-medium">会计学、统计学、管理学、项目管理</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section-fade stagger-2">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary to-secondary rounded-full mb-4">
+                    <i class="fas fa-cogs text-3xl text-white"></i>
+                </div>
+                <h2 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">技能&语言</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg card-hover text-center border border-day-border dark:border-dark-border">
+                    <div class="w-16 h-16 bg-gradient-to-r from-violet-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-code text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">编程技能</h3>
+                    <div class="space-y-2 text-gray-600 dark:text-gray-300">
+                        <p>Python (Sklearn, Pytorch, LangChain, Pandas)</p>
+                        <p>Dify, SQL, R, HTML</p>
+                    </div>
+                </div>
+
+                <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg card-hover text-center border border-day-border dark:border-dark-border">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-language text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">英语</h3>
+                    <div class="space-y-2 text-gray-600 dark:text-gray-300">
+                        <p>托福 102/120</p>
+                        <p>大学英语六级</p>
+                    </div>
+                </div>
+
+                <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg card-hover text-center border border-day-border dark:border-dark-border">
+                    <div class="w-16 h-16 bg-gradient-to-r from-red-400 to-lime-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-comments text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">中文</h3>
+                    <div class="space-y-2 text-gray-600 dark:text-gray-300">
+                        <p>普通话二级甲等</p>
+                        <p>国际中文教师资格证书</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="section-fade stagger-3">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary to-secondary rounded-full mb-4">
+                    <i class="fas fa-certificate text-3xl text-white"></i>
+                </div>
+                <h2 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">职业认证</h2>
+            </div>
+            <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg border card-hover border-day-border dark:border-dark-border">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-gray-200 dark:border-gray-700">
+                                <th class="text-left py-4 px-6 font-bold">证书名称</th>
+                                <th class="text-left py-4 px-6 font-bold">认证内容</th>
+                                <th class="text-left py-4 px-6 font-bold">颁布机构</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-100 dark:border-gray-700">
+                                <td class="py-4 px-6 font-semibold text-primary">IBM数据科学</td>
+                                <td class="py-4 px-6 text-gray-600 dark:text-gray-300">学习了10门数据技术相关的课程并通过相应的考试</td>
+                                <td class="py-4 px-6 text-gray-600 dark:text-gray-300">Coursera</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-semibold text-primary">亚马逊认证云从业者(CLF-C02)</td>
+                                <td class="py-4 px-6 text-gray-600 dark:text-gray-300">测试了云服务和云计算的相关知识</td>
+                                <td class="py-4 px-6 text-gray-600 dark:text-gray-300">亚马逊云服务</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Projects Section -->
+        <section class="section-fade stagger-4">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary to-secondary rounded-full mb-4">
+                    <i class="fas fa-robot text-3xl text-white"></i>
+                </div>
+                <h2 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">AI 应用项目</h2>
+            </div>
+            <!-- Workflow Projects -->
+            <div class="mb-12">
+                <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg mb-6 card-hover border border-day-border dark:border-dark-border">
+                    <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
+                    <i class="fas fa-project-diagram mr-3"></i>
+                    工作流搭建：
+                    <a href="https://github.com/Carinalin/DifyDSLHub" target="_blank" class="inline-flex items-center space-x-2 bg-primary text-white px-6 py-3 rounded-lg btn-hover text-sm">
+                        <i class="fab fa-github"></i>
+                        <span>查看项目</span>
+                    </a>
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        我在 Github 分享了利用 Dify 搭建的 11 个工作流，内容涵盖视频制作、语音生成、图像编辑、旅游规划、表格规划、热点新闻收集等方面，具体可以查看我的 Github 仓库。举例：
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-6 mt-8">
+                    <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-6 card-hover border-day-border dark:border-dark-border">
+                        <h4 class="text-xl font-bold mb-4 text-secondary flex items-center">
+                            <i class="fas fa-video mr-2"></i>
+                            养生食材科普视频生成
+                        </h4>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">该工作流依托我发布的一个 docker 镜像，可以自动生成一个养生食材科普视频，用户只需输入食材名，静待一分钟左右，工作流就会返回视频供播放和下载。</p>
+                        <div class="space-y-2">
+                            <a href="https://www.bilibili.com/video/BV1JfWEzFELE/?vd_source=b362435620fb0731faf887347dbc20ce" target="_blank" class="flex items-center space-x-2 text-primary hover:underline">
+                                <i class="fab fa-youtube"></i>
+                                <span>Bilibili 示例视频</span>
+                            </a>
+                            <a href="https://hub.docker.com/repository/docker/carinalin794/short_video_creation/" target="_blank" class="flex items-center space-x-2 text-primary hover:underline">
+                                <i class="fab fa-docker"></i>
+                                <span>Docker 镜像仓库</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-6 card-hover border-day-border dark:border-dark-border">
+                        <h4 class="text-xl font-bold mb-4 text-secondary flex items-center">
+                            <i class="fas fa-bed mr-2"></i>
+                            雷军给宝宝讲睡前故事
+                        </h4>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">该工作流基于 html form 模拟了用户登录，结合 minimax voice clone api 构建了一个睡前电台聊天流，电台主播有雷军大大、马斯克大大和马云大大。</p>
+                        <div class="space-y-2">
+                            <a href="https://github.com/Carinalin/DifyDSLHub/blob/master/7.%E9%9B%B7%E5%86%9B%E8%AE%B2%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B/Demo-%E9%9B%B7%E5%86%9B%E8%AE%B2%E4%B8%91%E5%B0%8F%E9%B8%AD.mp3" target="_blank" class="flex items-center space-x-2 text-primary hover:underline">
+                                <i class="fas fa-music"></i>
+                                <span>Github 示例音频</span>
+                            </a>
+                            <a href="https://platform.minimaxi.com/" target="_blank" class="flex items-center space-x-2 text-primary hover:underline">
+                                <i class="fas fa-link"></i>
+                                <span>Minimax Api接入</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- AI Programming Projects -->
+            <div class="mb-12">
+                <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg mb-6 card-hover border border-day-border dark:border-dark-border">
+                    <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
+                    <i class="fas fa-code mr-3"></i>
+                    AI 编程：
+                    <a href="https://github.com/Carinalin/VibeCoding" target="_blank" class="inline-flex items-center space-x-2 bg-primary text-white px-6 py-3 rounded-lg btn-hover text-sm">
+                        <i class="fab fa-github"></i>
+                        <span>查看项目</span>
+                    </a>
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        我对近期非常热门的 AI 编程也很感兴趣，利用闲暇时间和 AI 一起做了一些 toy projects。其中四个项目分享在了 Github 上，内容涵盖星球探索游戏、小说续写、英语练习、书签生成等方面，具体可查看仓库。举例：
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-6 mt-8">
+                    <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-6 card-hover border-day-border dark:border-dark-border">
+                        <h4 class="text-xl font-bold mb-4 text-secondary flex items-center">
+                            <i class="fas fa-gamepad mr-2"></i>
+                            趣味英语乐园
+                        </h4>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">一个面向中国小学生的互动英语教学网站，基于人教版教材，小学生通过趣味游戏的方式巩固课程词汇，并解锁下一课程。</p>
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <span>采用响应式设计，保证多设备的一致体验</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-minus-circle text-red-400"></i>
+                            <span>借助浏览器 localStorage，无数据库支持</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-6 card-hover border-day-border dark:border-dark-border">
+                        <h4 class="text-xl font-bold mb-4 text-secondary flex items-center">
+                            <i class="fas fa-bookmark mr-2"></i>
+                            水果书签生成
+                        </h4>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">一个基于微信小程序平台开发的创意书签生成应用。用户输入水果名称，系统会自动生成一句与该水果相关的精美书签。</p>
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-cog text-blue-500"></i>
+                            <span>API故障自动切换，主API请求失败时自动切换备用API</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-exclamation-triangle text-pink-400"></i>
+                            <span>内置字体生成图片，在不同设备生成的图片会有差异</span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Model Projects Section -->
+        <section class="section-fade">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary to-secondary rounded-full mb-4">
+                    <i class="fas fa-brain text-3xl text-white"></i>
+                </div>
+                <h2 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">AI 模型项目</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg card-hover border border-day-border dark:border-dark-border">
+                    <h3 class="text-xl font-bold mb-4 text-primary flex items-center">
+                        <i class="fas fa-school mr-2"></i>
+                        校内项目
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-secondary pl-4">
+                            <h4 class="font-bold text-secondary">CV - 构建超市商品的异常检测模型</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">2024.06-2024.07</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">利用超市商品数据集重建并训练了基于LLM的异常检测模型：AnomalyGPT, CLIP, Diffusion Transformer。</p>
+                        </div>
+                        <div class="border-l-4 border-accent pl-4">
+                            <h4 class="font-bold text-accent">CV - 为感兴趣的中国美食图像生成食谱</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">2023.10-2023.12</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">通过迁移学习实践CNN和ViT模型，结合数据增强技术如Mixup，构建有效的食物图像分类器。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg card-hover border border-day-border dark:border-dark-border">
+                    <h3 class="text-xl font-bold mb-4 text-primary flex items-center">
+                        <i class="fas fa-trophy mr-2"></i>
+                        竞赛项目
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <h4 class="font-bold text-yellow-600">Lacuna 疟疾检测挑战</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">检测疟疾患者显微图像中的寄生虫和血细胞</p>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-pen text-green-300"></i>
+                                <span class="text-sm">构建具有小目标检测能力的算法</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-medal text-yellow-500"></i>
+                                <span class="text-sm font-semibold">银牌</span>
+                            </div>
+                        </div>
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <h4 class="font-bold text-blue-600">2024长三角算力算法创新应用大赛</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">基于目标检测Open-set算法识别</p>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-keyboard text-violet-400"></i>
+                                <span class="text-sm">构建具有新目标检测能力的算法</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-chart-line text-blue-500"></i>
+                                <span class="text-sm font-semibold">24/45</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section class="section-fade">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary to-secondary rounded-full mb-4">
+                    <i class="fas fa-briefcase text-3xl text-white"></i>
+                </div>
+                <h2 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">工作经历</h2>
+            </div>
+            <div class="space-y-8">
+                <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg card-hover border border-day-border dark:border-dark-border">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                        <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                            <div class="w-12 h-12 bg-gradient-to-r from-lime-500 to-cyan-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-building text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary">龙湖地产(深圳公司)</h3>
+                                <p class="text-gray-600 dark:text-gray-300">中国500强企业 - 公寓活动专员</p>
+                            </div>
+                        </div>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">2018.03-2019.07</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-gray-600 dark:text-gray-300">基于历史数据规划并实施租户活动以提升服务质量</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-gray-600 dark:text-gray-300">发起微信服务小程序项目并运营（项目获集团表彰）</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-trophy text-yellow-500 mt-1"></i>
+                            <p class="text-gray-600 dark:text-gray-300">2018年底获得晋升（部门晋升率仅为10%）</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg card-hover border border-day-border dark:border-dark-border">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                        <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                            <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-lime-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-building text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary">深业集团（深业置地）</h3>
+                                <p class="text-gray-600 dark:text-gray-300">深圳市国资委直管 - 招商专员/管培生</p>
+                            </div>
+                        </div>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">2017.07-2018.02</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-gray-600 dark:text-gray-300">深业上城商场项目中协助招商经理与各品牌方联系并合作</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-gray-600 dark:text-gray-300">深业上城商场项目新开业期间负责每日汇总数据并产出分析报告</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-award text-blue-500 mt-1"></i>
+                            <p class="text-gray-600 dark:text-gray-300">被评为2017年度最佳员工</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interests Section -->
+        <section class="section-fade">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary to-secondary rounded-full mb-4">
+                    <i class="fas fa-heart text-3xl text-white"></i>
+                </div>
+                <h2 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">兴趣爱好</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg card-hover text-center border border-day-border dark:border-dark-border">
+                    <div class="w-16 h-16 bg-gradient-to-r from-rose-400 to-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-book text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">读书</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">微信读书忠诚用户，喜欢用typora做笔记，常读计算机、历史、医疗等书籍。</p>
+                </div>
+
+                <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg card-hover text-center border border-day-border dark:border-dark-border">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-400 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-table-tennis text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">羽毛球</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">五年业余羽毛球经历，每周末会在球馆鏖战3-6小时，喜欢山口茜和安洗莹。</p>
+                </div>
+
+                <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg card-hover text-center border border-day-border dark:border-dark-border">
+                    <div class="w-16 h-16 bg-gradient-to-r from-violet-400 to-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-leaf text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">喝茶</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">潮汕功夫茶重度爱好者，家中茶盘从不落灰，喜欢绿茶和铁观音。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- AI Chat Assistant -->
+    <div id="chatAssistant" class="fixed bottom-6 right-6 z-40">
+        <button id="chatToggle" class="bg-primary text-white p-4 rounded-full shadow-lg btn-hover animate-bounce-soft"
+                aria-label="切换聊天助手" aria-expanded="false">
+            <i class="fas fa-robot text-xl" aria-hidden="true"></i>
+        </button>
+
+        <div id="chatWindow" class="hidden absolute bottom-16 right-0 w-80 h-96 chat-window rounded-2xl shadow-2xl border border-day-border dark:border-dark-border"
+             role="dialog" aria-label="聊天助手" aria-modal="true">
+            <div class="p-4 border-b border-day-border dark:border-dark-border">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-primary">简历小助手</h3>
+                    <button id="closeChat" class="text-gray-500 hover:text-gray-700" aria-label="关闭聊天">
+                        <i class="fas fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">问我关于林晓华的任何问题！</p>
+            </div>
+
+            <div id="chatMessages" class="flex-1 p-4 h-64 overflow-y-auto space-y-3 flex flex-col" role="log" aria-live="polite" aria-label="聊天消息">
+                <div class="bg-primary text-white p-3 rounded-lg rounded-bl-none">
+                    <p class="text-sm">你好！我是林晓华的数字分身，有什么想了解的吗？</p>
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-day-border dark:border-dark-border">
+                <div class="flex space-x-2">
+                    <input id="chatInput" type="text" placeholder="输入你的问题..."
+                           class="flex-1 px-3 py-2 border border-day-border dark:border-dark-border rounded-lg bg-day-surface dark:bg-dark-surface focus:outline-none focus:ring-2 focus:ring-primary"
+                           aria-label="输入你的问题" maxlength="500">
+                    <button id="sendMessage" class="bg-primary text-white px-4 py-2 rounded-lg btn-hover" aria-label="发送消息">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-day-bg dark:bg-dark-bg py-12 mt-5">
+        <div class="container mx-auto px-6 text-center">
+            <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg card-hover border border-day-border dark:border-dark-border">
+                <h3 class="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">作者信息</h3>
+                <div class="space-y-4">
+                    <p class="text-xl font-semibold">林晓华（Carina Lin）</p>
+                    <div class="flex justify-center space-x-6">
+                        <a href="https://github.com/Carinalin/" target="_blank" class="flex items-center space-x-2 text-primary hover:underline">
+                            <i class="fab fa-github text-xl"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">更新日期：2025.10.21</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Resume Application Module
+        const ResumeApp = {
+            // Configuration
+            config: {
+                rateLimitMs: 1000,
+                maxMessageLength: 500,
+                apiTimeout: 10000
+            },
+
+            // State management
+            state: {
+                lastMessageTime: 0,
+                isProcessing: false
+            },
+
+            // Initialize the application
+            init() {
+                this.setupTheme();
+                this.setupChat();
+                this.setupAnimations();
+                this.setupAccessibility();
+            },
+
+            // Theme management with error handling
+            setupTheme() {
+                const themeToggle = document.getElementById('themeToggle');
+                const html = document.documentElement;
+
+                if (!themeToggle) {
+                    console.warn('Theme toggle button not found');
+                    return;
+                }
+
+                try {
+                    // Check for saved theme preference or default to system preference
+                    const savedTheme = localStorage.getItem('theme');
+                    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                    const currentTheme = savedTheme || systemTheme;
+
+                    if (currentTheme === 'dark') {
+                        html.classList.add('dark');
+                        themeToggle.setAttribute('aria-pressed', 'true');
+                    } else {
+                        themeToggle.setAttribute('aria-pressed', 'false');
+                    }
+
+                    themeToggle.addEventListener('click', () => {
+                        html.classList.toggle('dark');
+                        const newTheme = html.classList.contains('dark') ? 'dark' : 'light';
+
+                        try {
+                            localStorage.setItem('theme', newTheme);
+                            themeToggle.setAttribute('aria-pressed', newTheme === 'dark' ? 'true' : 'false');
+                        } catch (e) {
+                            console.warn('LocalStorage not available:', e);
+                        }
+                    });
+
+                    // Listen for system theme changes
+                    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                        if (!localStorage.getItem('theme')) {
+                            html.classList.toggle('dark', e.matches);
+                            themeToggle.setAttribute('aria-pressed', e.matches ? 'true' : 'false');
+                        }
+                    });
+                } catch (error) {
+                    console.error('Error setting up theme:', error);
+                }
+            },
+
+            // Chat assistant with improved functionality
+            setupChat() {
+                const chatToggle = document.getElementById('chatToggle');
+                const chatWindow = document.getElementById('chatWindow');
+                const closeChat = document.getElementById('closeChat');
+                const chatInput = document.getElementById('chatInput');
+                const sendMessage = document.getElementById('sendMessage');
+                const chatMessages = document.getElementById('chatMessages');
+
+                if (!chatToggle || !chatWindow || !closeChat || !chatInput || !sendMessage || !chatMessages) {
+                    console.warn('Chat elements not found');
+                    return;
+                }
+
+                // Resume content for AI context
+                const resumeContext = `林晓华，数据科学硕士，AI 应用爱好者，联系方式：+86-13750031293，carinalin1006@gmail.com，广东深圳。
+                教育背景：佐治亚理工学院数据科学硕士（2022-2024，GPA 4.0），中山大学酒店管理学士（2013-2017，GPA 3.8）。
+                技能：Python, Sklearn, Pytorch, LangChain, Dify, SQL, R, HTML，托福102，普通话二级甲等。
+                认证：IBM数据科学（Coursera），亚马逊云从业者认证。
+                AI项目：GitHub分享11个Dify工作流，包括视频生成、语音克隆等；AI编程项目包括趣味英语乐园、水果书签生成等。
+                模型项目：超市商品异常检测（AnomalyGPT），中国美食图像食谱生成，疟疾检测竞赛银牌等。
+                工作经历：龙湖地产活动专员，深业集团招商专员。
+                兴趣爱好：读书、羽毛球、喝茶。`;
+
+                // Chat toggle functionality
+                chatToggle.addEventListener('click', () => {
+                    const isHidden = chatWindow.classList.contains('hidden');
+                    chatWindow.classList.toggle('hidden');
+                    chatToggle.setAttribute('aria-expanded', !isHidden);
+
+                    if (!isHidden) {
+                        chatInput.focus();
+                    }
+                });
+
+                closeChat.addEventListener('click', () => {
+                    chatWindow.classList.add('hidden');
+                    chatToggle.setAttribute('aria-expanded', 'false');
+                });
+
+                // Add message function with error handling
+                const addMessage = (message, isUser = false) => {
+                    try {
+                        const messageDiv = document.createElement('div');
+                        messageDiv.className = `p-3 rounded-lg max-w-[80%] ${isUser ? 'bg-day-surface dark:bg-dark-surface-variant text-day-text-primary dark:text-dark-text-primary rounded-br-none self-end' : 'bg-primary text-white rounded-bl-none self-start'}`;
+
+                        // Remove extra whitespace and normalize the message
+                        const cleanMessage = message.replace(/\s+/g, ' ').trim();
+                        messageDiv.innerHTML = `<p class="text-sm whitespace-pre-wrap">${cleanMessage}</p>`;
+
+                        chatMessages.appendChild(messageDiv);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    } catch (error) {
+                        console.error('Error adding message:', error);
+                    }
+                };
+
+                // Rate limiting function
+                const checkRateLimit = () => {
+                    const now = Date.now();
+                    if (now - this.state.lastMessageTime < this.config.rateLimitMs) {
+                        return false;
+                    }
+                    this.state.lastMessageTime = now;
+                    return true;
+                };
+
+                // Input validation
+                const validateInput = (message) => {
+                    if (!message || message.length > this.config.maxMessageLength) return false;
+                    if (/^[\s\n]*$/.test(message)) return false;
+                    return true;
+                };
+
+                // AI response function with timeout and error handling
+                const sendToAI = async (message) => {
+                    try {
+                        const prompt = `基于以下简历信息回答问题：${resumeContext}
+
+用户问题：${message}
+
+请根据简历信息回答用户问题。回答规则：
+1. 如果问题与简历内容相关，直接回答
+2. 如果问题与简历内容无关，先给出礼貌回答，然后在最后加上：\n\n这是Carina Lin的数字分身，如果你能提问跟我的履历相关的信息，我的回答会更加精准哦！
+
+请用中文回答：`;
+
+                        const controller = new AbortController();
+                        const timeoutId = setTimeout(() => controller.abort(), this.config.apiTimeout);
+
+                        const response = await fetch(`https://text.pollinations.ai/${encodeURIComponent(prompt)}`, {
+                            signal: controller.signal
+                        });
+
+                        clearTimeout(timeoutId);
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+
+                        const data = await response.text();
+                        return data.trim();
+                    } catch (error) {
+                        console.error('Error sending to AI:', error);
+                        if (error.name === 'AbortError') {
+                            return '抱歉，请求超时了。请再试一次。';
+                        }
+                        return '抱歉，我现在无法回答这个问题。请稍后再试。';
+                    }
+                };
+
+                // Send message function with validation and rate limiting
+                const handleSendMessage = async () => {
+                    if (this.state.isProcessing) return;
+
+                    const message = chatInput.value.trim();
+
+                    if (!validateInput(message)) {
+                        chatInput.classList.add('border-red-500');
+                        setTimeout(() => chatInput.classList.remove('border-red-500'), 2000);
+                        return;
+                    }
+
+                    if (!checkRateLimit()) {
+                        addMessage('请稍等片刻再发送消息。');
+                        return;
+                    }
+
+                    this.state.isProcessing = true;
+                    sendMessage.disabled = true;
+
+                    addMessage(message, true);
+                    chatInput.value = '';
+
+                    // Show typing indicator
+                    const typingDiv = document.createElement('div');
+                    typingDiv.className = 'bg-primary text-white p-3 rounded-lg rounded-bl-none mr-12';
+                    typingDiv.innerHTML = '<p class="text-sm">正在思考...</p>';
+                    typingDiv.id = 'typing-indicator';
+                    chatMessages.appendChild(typingDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                    try {
+                        const response = await sendToAI(message);
+                        chatMessages.removeChild(typingDiv);
+                        addMessage(response);
+                    } catch (error) {
+                        console.error('Error processing message:', error);
+                        chatMessages.removeChild(typingDiv);
+                        addMessage('抱歉，遇到了错误。请再试一次。');
+                    } finally {
+                        this.state.isProcessing = false;
+                        sendMessage.disabled = false;
+                        chatInput.focus();
+                    }
+                };
+
+                // Event listeners
+                sendMessage.addEventListener('click', handleSendMessage);
+
+                chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        handleSendMessage();
+                    }
+                });
+
+                // Accessibility: Escape key to close chat
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && !chatWindow.classList.contains('hidden')) {
+                        closeChat.click();
+                    }
+                });
+            },
+
+            // Setup animations with performance optimization
+            setupAnimations() {
+                // Smooth scrolling for internal links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+
+                // Intersection Observer for fade-in animations with performance optimization
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            // Stop observing after animation to improve performance
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.section-fade').forEach(section => {
+                    observer.observe(section);
+                });
+            },
+
+            // Accessibility improvements
+            setupAccessibility() {
+                // Add skip link for keyboard navigation
+                const skipLink = document.createElement('a');
+                skipLink.href = '#main-content';
+                skipLink.textContent = '跳转到主要内容';
+                skipLink.className = 'sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-white px-4 py-2 rounded-lg z-50';
+                document.body.insertBefore(skipLink, document.body.firstChild);
+
+                // Add main content ID if not present
+                const main = document.querySelector('main');
+                if (main && !main.id) {
+                    main.id = 'main-content';
+                }
+
+                // Enhance focus management for chat
+                const chatToggle = document.getElementById('chatToggle');
+                const chatWindow = document.getElementById('chatWindow');
+                const closeChat = document.getElementById('closeChat');
+                const chatInput = document.getElementById('chatInput');
+
+                if (chatToggle) {
+                    chatToggle.setAttribute('aria-label', '切换聊天助手');
+                    chatToggle.setAttribute('aria-expanded', 'false');
+                }
+
+                if (chatWindow) {
+                    chatWindow.setAttribute('role', 'dialog');
+                    chatWindow.setAttribute('aria-label', '聊天助手');
+                    chatWindow.setAttribute('aria-modal', 'true');
+                }
+
+                if (closeChat) {
+                    closeChat.setAttribute('aria-label', '关闭聊天');
+                }
+
+                if (chatInput) {
+                    chatInput.setAttribute('aria-label', '输入你的问题');
+                    chatInput.setAttribute('maxlength', this.config.maxMessageLength);
+                }
+
+                // Add focus trap for chat window
+                this.setupFocusTrap(chatWindow, closeChat);
+            },
+
+            // Focus trap for modal accessibility
+            setupFocusTrap(modal, closeButton) {
+                if (!modal || !closeButton) return;
+
+                const focusableElements = modal.querySelectorAll(
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                );
+                const firstFocusable = focusableElements[0];
+                const lastFocusable = focusableElements[focusableElements.length - 1];
+
+                modal.addEventListener('keydown', (e) => {
+                    if (e.key === 'Tab') {
+                        if (e.shiftKey) {
+                            if (document.activeElement === firstFocusable) {
+                                lastFocusable.focus();
+                                e.preventDefault();
+                            }
+                        } else {
+                            if (document.activeElement === lastFocusable) {
+                                firstFocusable.focus();
+                                e.preventDefault();
+                            }
+                        }
+                    }
+                });
+            }
+        };
+
+        // Initialize the application when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => ResumeApp.init());
+        } else {
+            ResumeApp.init();
+        }
+
+        // Handle page visibility change to pause/resume animations
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Pause animations when page is not visible
+                document.body.style.animationPlayState = 'paused';
+            } else {
+                // Resume animations when page becomes visible
+                document.body.style.animationPlayState = 'running';
+            }
+        });
+    </script>
+</body>
+</html>
