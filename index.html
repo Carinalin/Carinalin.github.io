@@ -302,7 +302,7 @@
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-soft">
+        <div id="scroll-indicator" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-soft">
             <i class="fas fa-chevron-down text-2xl text-gray-400"></i>
         </div>
     </header>
@@ -1173,6 +1173,26 @@
             } else {
                 // Resume animations when page becomes visible
                 document.body.style.animationPlayState = 'running';
+            }
+        });
+
+        // handle scroll indicator event
+        document.addEventListener('DOMContentLoaded', function() {
+            // get scroll indicator id
+            const scrollIndicator = document.getElementById('scroll-indicator');
+            
+            // get main content id
+            const mainContent = document.getElementById('main-content');
+            
+            // add event listener
+            if (scrollIndicator && mainContent) {
+                scrollIndicator.addEventListener('click', function() {
+                    // scroll to the main content
+                    mainContent.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
             }
         });
     </script>
