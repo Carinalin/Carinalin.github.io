@@ -472,12 +472,65 @@
                 </div>
                 <h2 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">AI 应用项目</h2>
             </div>
+            <!-- Langgraph Projects -->
+            <div class="mb-12">
+                <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg mb-6 card-hover border border-day-border dark:border-dark-border">
+                    <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
+                    <i class="fas fa-robot mr-3"></i>
+                    垂直类 AI 代理搭建：
+                    <a href="https://github.com/Carinalin/HelloAgents" target="_blank" class="inline-flex items-center space-x-2 bg-primary text-white px-6 py-3 rounded-lg btn-hover text-sm">
+                        <i class="fab fa-github"></i>
+                        <span>查看项目</span>
+                    </a>
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        我在 Github 分享了利用 LangChain、LangGraph 和 Streamlit 搭建的有趣 AI Agent：LongStoryWriter 可以撰写具有情节一致性的长篇小说，SlidesTranslator 能够在保持原设计的前提下翻译成指定语言的PPT：
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-6 mt-8">
+                    <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-6 card-hover border-day-border dark:border-dark-border">
+                        <h4 class="text-xl font-bold mb-4 text-secondary flex items-center">
+                            <i class="fas fa-file-pen mr-2"></i>
+                            AI 长篇小说家
+                        </h4>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">该代理基于 LangGraph 构建，支持中文和英文长篇小说的自动生成。用户只需输入一个简单的想法，如：写个大学生毕业后到地府打工的黑色幽默小说来影射现实的社会问题，就可以等待长篇小说出炉了。</p>
+                        <div class="space-y-2">
+                            <a href="https://github.com/Carinalin/HelloAgents/blob/main/1_LongStoryWriter/out/AI_Novel_Chinese.pdf" target="_blank" class="flex items-center space-x-2 text-primary hover:underline">
+                                <i class="fas fa-feather-pointed mr-2"></i>
+                                <span>中文小说（75万字）</span>
+                            </a>
+                            <a href="https://github.com/Carinalin/HelloAgents/blob/main/1_LongStoryWriter/out/AI_novel_English.pdf" target="_blank" class="flex items-center space-x-2 text-primary hover:underline">
+                                <i class="fas fa-pen-clip mr-2"></i>
+                                <span>英文小说（22万词）</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-6 card-hover border-day-border dark:border-dark-border">
+                        <h4 class="text-xl font-bold mb-4 text-secondary flex items-center">
+                            <i class="fas fa-file-powerpoint mr-2"></i>
+                            PPT 翻译代理
+                        </h4>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">该代理采用 LangGraph 构建，并使用 Streamlit 搭建简洁的前端页面。它能够智能翻译 PowerPoint 演示文稿的文本框（暂不支持翻译表格、图表、SmartArt等），同时保持幻灯片的原始设计和格式。</p>
+                        <div class="space-y-2">
+                            <a href="https://github.com/Carinalin/HelloAgents/blob/main/2_SlidesTranslator/template/WithDesign" target="_blank" class="flex items-center space-x-2 text-primary hover:underline">
+                                <i class="fas fa-pen-to-square mr-3"></i>
+                                <span>瑜伽市场调查 PPT 翻译</span>
+                            </a>
+                            <a href="https://github.com/Carinalin/HelloAgents/tree/main/2_SlidesTranslator/template/BlankDesign" target="_blank" class="flex items-center space-x-2 text-primary hover:underline">
+                                <i class="fas fa-play-circle mr-3"></i>
+                                <span>深圳人口流动 PPT 翻译</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
             <!-- Workflow Projects -->
             <div class="mb-12">
                 <div class="bg-day-surface dark:bg-dark-surface rounded-2xl p-8 shadow-lg mb-6 card-hover border border-day-border dark:border-dark-border">
                     <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
                     <i class="fas fa-project-diagram mr-3"></i>
-                    工作流搭建：
+                    Dify 工作流搭建：
                     <a href="https://github.com/Carinalin/DifyDSLHub" target="_blank" class="inline-flex items-center space-x-2 bg-primary text-white px-6 py-3 rounded-lg btn-hover text-sm">
                         <i class="fab fa-github"></i>
                         <span>查看项目</span>
@@ -510,7 +563,7 @@
                             <i class="fas fa-bed mr-2"></i>
                             雷军给宝宝讲睡前故事
                         </h4>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">该工作流基于 html form 模拟了用户登录，结合 minimax voice clone api 构建了一个睡前电台聊天流，电台主播有雷军大大、马斯克大大和马云大大。</p>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">该工作流基于 html form 模拟了用户登录，结合 minimax voice clone api 构建了一个睡前电台，电台主播有雷军大大、马斯克大大和马云大大。用户输入一个故事名并选择主播，就可以等待音频生成了。</p>
                         <div class="space-y-2">
                             <a href="https://github.com/Carinalin/DifyDSLHub/blob/master/7.%E9%9B%B7%E5%86%9B%E8%AE%B2%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B/Demo-%E9%9B%B7%E5%86%9B%E8%AE%B2%E4%B8%91%E5%B0%8F%E9%B8%AD.mp3" target="_blank" class="flex items-center space-x-2 text-primary hover:underline">
                                 <i class="fas fa-music"></i>
